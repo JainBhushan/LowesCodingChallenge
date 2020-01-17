@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="rollingFilerequestAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- <filter class="ch.qos.logback.classic.filter.ThresholdFilter"> <level>info</level> 
+			</filter> -->
+		<file>C:/Logs/logs.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>C:/Logs/logs.log.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date{yyyy-MM-dd HH:mm:ss:SSS} | %-5level [%thread]
+				%message%n</pattern>
+		</encoder>
+
+		<!-- <encoder class="net.logstash.logback.encoder.LogstashEncoder"> </encoder> -->
+	</appender>
+	<logger name="in.lowes.app" level="INFO" additivity="false">
+		<appender-ref ref="rollingFilerequestAppender" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="rollingFilerequestAppender" />
+	</root>
+</configuration>
